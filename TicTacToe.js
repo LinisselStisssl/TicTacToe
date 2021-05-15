@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		finished, // Flag für Spiel-ist-zuende; 
 		fields = document.querySelectorAll('#gameboard button'),
 		hint = document.querySelector('#hint');
+		//hint = document.getElementById('hint');
 
 	function markField(e) {
 		var field = e.target;
@@ -34,44 +35,44 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Gewinner ermitteln
 		for (i = 0; i < 4; i++) {
 			// 3 senkrecht
-			if (fields[0 + i].getAttribute('aria-label') != "" 
+			if (fields[0 + i].getAttribute('aria-label') != null 
 				&& fields[0 + i].getAttribute('aria-label') == fields[4 + i].getAttribute('aria-label') 
 				&& fields[4 + i].getAttribute('aria-label') == fields[8 + i].getAttribute('aria-label')
 				&& fields[8 + i].getAttribute('aria-label') == fields[12 + i].getAttribute('aria-label')) {
 				// we have a winner!
-				winner = fields[0 + i].getAttribute('aria-label');
 				highlightCells([fields[i], fields[4 + i], fields[8 + i], fields[12 + i]]);
+				winner = fields[0 + i].getAttribute('aria-label');
 			}
 			// 3 waagrecht
-			if (fields[i * 4].getAttribute('aria-label') != "" 
+			if (fields[i * 4].getAttribute('aria-label') != null 
 				&& fields[i * 4].getAttribute('aria-label') == fields[i * 4 + 1].getAttribute('aria-label') 
 				&& fields[i * 4 + 1].getAttribute('aria-label') == fields[i * 4 + 2].getAttribute('aria-label')
 				&& fields[i * 4 + 2].getAttribute('aria-label') == fields[i * 4 + 3].getAttribute('aria-label')) {
 				// we have a winner!
-				winner = fields[i * 4].getAttribute('aria-label');
 				highlightCells([fields[i * 4], fields[i * 4 + 1], fields[i * 4 + 2], fields[i * 4 + 3]]);
+		 		winner = fields[i * 4].getAttribute('aria-label');
 			}
 		}
 		// diagonal links oben nach rechts unten
-		if (fields[0].getAttribute('aria-label') != "" 
+		if (fields[0].getAttribute('aria-label') != null 
 				&& fields[0].getAttribute('aria-label') == fields[5].getAttribute('aria-label') 
 				&& fields[5].getAttribute('aria-label') == fields[10].getAttribute('aria-label')
 				&& fields[10].getAttribute('aria-label') == fields[15].getAttribute('aria-label')) {
-			winner = fields[0].getAttribute('aria-label');
 			highlightCells([fields[0], fields[5], fields[10], fields[15]]);
+			winner = fields[0].getAttribute('aria-label');
 		}
 		// diagonal rechts oben nach links unten
-		if (fields[3].getAttribute('aria-label') != "" 
+		if (fields[3].getAttribute('aria-label') != null 
 				&& fields[3].getAttribute('aria-label') == fields[6].getAttribute('aria-label') 
 				&& fields[6].getAttribute('aria-label') == fields[9].getAttribute('aria-label')
 				&& fields[9].getAttribute('aria-label') == fields[12].getAttribute('aria-label')) {
-			winner = fields[3].getAttribute('aria-label');
 			highlightCells([fields[3], fields[6], fields[9], fields[12]]);
+			winner = fields[3].getAttribute('aria-label');
 		}
 		// Game over?
 		if (full || winner) {
 			finished = true;
-			if (winner == 'x' || winner == 'o') {
+			if (winner = 'x' || winner == 'o') {
 				hint.innerText = 'Das Spiel ist zu Ende, weil Spieler ' + winner +
 					' gewonnen hat!';
 				hint.className = 'success';
@@ -82,13 +83,14 @@ document.addEventListener('DOMContentLoaded', function () {
 				hint.className = 'warning';
 			}
 			//new game?
-			var newGame = confirm('Neues Spiel?', '');
-			if (newGame == true) {
-				location.reload();
-				return false;
-			}
+			//var newGame = confirm('Neues Spiel?', '');
+			//if (newGame == true) {
+			//	location.reload();
+			//	return false;
+			//}
 		}
 	}
+
 
 	function highlightCells(cells) {
 		for (var i = 0; i < 4; i++) {
