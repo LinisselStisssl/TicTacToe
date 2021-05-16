@@ -1,7 +1,11 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', function () {
 	document.querySelector('#gameboard')
-		.addEventListener('click', markField);
+		.addEventListener('click', markField);	
+	document.querySelector('#NewGame')
+		.addEventListener('click', ShowButton);
+	document.querySelector('#NewGame')
+		.addEventListener('click', NewGame);
 	var current = 0,
 		players = ['x', 'o'],
 		winner,
@@ -9,6 +13,27 @@ document.addEventListener('DOMContentLoaded', function () {
 		fields = document.querySelectorAll('#gameboard button'),
 		hint = document.querySelector('#hint');
 		//hint = document.getElementById('hint');
+
+	//function newGame(e) {
+	//	var newGame = e.target;
+	//	if (newGame == true) {
+	//		location.reload();
+			//	return false;
+	//	}
+	//}
+
+	function ShowButton(divName){
+		//Gibt es das Objekt mit dem Namen der in divName übergeben wurde?
+		if(document.getElementById(divName)){
+		 /*"Sichtbarkeit" des Divs umschalten. 
+		 Wenn es sichtbar war, unsichtbar machen und umgedreht.*/
+		 document.getElementById(divName).style.display = 'inline';
+		}
+	   }
+
+	function NewGame(divName){
+		 location.reload();
+	}
 
 	function markField(e) {
 		var field = e.target;
@@ -82,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'Das Spiel endet unentschieden, weil alle Felder belegt sind.';
 				hint.className = 'warning';
 			}
+			ShowButton("NewGame");
 			//new game?
 			//var newGame = confirm('Neues Spiel?', '');
 			//if (newGame == true) {
