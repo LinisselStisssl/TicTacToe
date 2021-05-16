@@ -10,6 +10,6 @@
             "type": "pwa-chrome",
             "file": "${workspaceRoot}/TicTacToe_1.0.html",
             "webRoot": "${workspaceFolder}"
-        },,
+        },
     ]
 }
